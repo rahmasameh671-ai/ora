@@ -10,6 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
   initVisualGalleries();
 });
 
+/**
+ * Google Ads Outbound Click / Call Tracking Conversion Handler
+ */
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  if (typeof gtag === 'function') {
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17705943670/XkReCJXR_LobEPaE7fpB',
+        'event_callback': callback
+    });
+  } else if (typeof(url) != 'undefined') {
+    window.location = url;
+  }
+  return false;
+}
+
 // Comprehensive International Country Codes with Flags
 const countryCodes = [
   { name: 'Egypt', code: '+20', flag: '🇪🇬' },
@@ -242,14 +262,12 @@ function initLeadForm() {
     if (flagDisplay) flagDisplay.textContent = '🇪🇬';
     if (codeDisplay) codeDisplay.textContent = '+20';
 
-    // Trigger Google Ads Conversion & Lead Event
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'generate_lead', {
-        event_category: 'form_submission',
-        event_label: 'ORA Developers Lead Form'
-      });
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-17705943670'
+    // Run exact Google Ads conversion tracking code whenever a user submits the lead form
+    if (typeof gtag_report_conversion === 'function') {
+      gtag_report_conversion();
+    } else if (typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-17705943670/XkReCJXR_LobEPaE7fpB'
       });
     }
 
@@ -265,19 +283,15 @@ function initLeadForm() {
     }
   });
 
-  // Track WhatsApp clicks with Google Tag
+  // Track all WhatsApp buttons (floating or inline) with gtag_report_conversion
   document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-    link.addEventListener('click', () => {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'contact', {
-          event_category: 'whatsapp_click',
-          event_label: 'WhatsApp Inquiry'
-        });
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-17705943670'
-        });
-      }
-    });
+    if (!link.getAttribute('onclick')) {
+      link.addEventListener('click', function() {
+        if (typeof gtag_report_conversion === 'function') {
+          return gtag_report_conversion(this.href);
+        }
+      });
+    }
   });
 
   if (modalCloseBtn && modalBackdrop) {
