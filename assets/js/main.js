@@ -167,7 +167,7 @@ function initLeadForm() {
       fullName: fullName,
       phoneNumber: fullPhoneNumber,
       countryCode: countryCode,
-      portfolio: "ORA Developers — Silversands, ZED East & ZED West",
+      portfolio: "ORA Developers — Solana East (Gardinn), ZED East & ZED West",
       source: window.location.href,
       targetRecipients: [
         "Rahma@irtkaz.com",
@@ -193,7 +193,7 @@ function initLeadForm() {
       countryCode: countryCode,
       landingPageUrl: window.location.href,
       submissionDate: new Date().toISOString(),
-      portfolio: "ORA Developers (Silversands, ZED East, ZED West)"
+      portfolio: "ORA Developers (Solana East Gardinn, ZED East, ZED West)"
     };
 
     try {
@@ -221,7 +221,7 @@ function initLeadForm() {
           "Full Name": fullName,
           "Phone Number": fullPhoneNumber,
           "Country Code": countryCode,
-          "Portfolio": "ORA Developers (Silversands, ZED East, ZED West)",
+          "Portfolio": "ORA Developers (Solana East Gardinn, ZED East, ZED West)",
           "Lead Source": "properties-z.com Landing Page",
           "Date & Time": leadData.formattedTime
         })
@@ -273,20 +273,20 @@ function initLeadForm() {
  * Visual Gallery Lightbox Modal
  */
 const projectGalleries = {
-  silversands: {
-    title: "Silversands North Coast — Visual Gallery",
+  solana_east: {
+    title: "Solana East (Gardinn) — Visual Gallery",
     items: [
       {
-        src: "assets/images/silversands.jpg",
-        caption: "The Cove Lagoon Frontage — Sidi Heneish"
+        src: "assets/images/solana_east.jpg",
+        caption: "Boutique G+3 Serviced Apartments & Garden Residences"
       },
       {
-        src: "assets/images/silversands_gallery_1.jpg",
-        caption: "Crystal Lagoon Residences & Infinity Pool"
+        src: "assets/images/zed_east_gallery_1.jpg",
+        caption: "Curated Landscaping & Private Terraces"
       },
       {
-        src: "assets/images/silversands_gallery_2.jpg",
-        caption: "1km of Pristine Mediterranean Coastline"
+        src: "assets/images/zed_east_gallery_2.jpg",
+        caption: "Contemporary Architectural Details & Open Views"
       }
     ]
   },
