@@ -186,7 +186,27 @@ function initLeadForm() {
       console.error('LocalStorage error:', err);
     }
 
-    // Backend lead dispatch to specified email recipients
+    // 1. Primary Dispatch: Zapier Webhook
+    const zapierPayload = {
+      fullName: fullName,
+      phoneNumber: fullPhoneNumber,
+      countryCode: countryCode,
+      landingPageUrl: window.location.href,
+      submissionDate: new Date().toISOString(),
+      portfolio: "ORA Developers (Silversands, ZED East, ZED West)"
+    };
+
+    try {
+      await fetch("https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/", {
+        method: "POST",
+        body: JSON.stringify(zapierPayload),
+      });
+      console.log("Zapier webhook dispatched successfully");
+    } catch (zapierError) {
+      console.error("Zapier webhook error:", zapierError);
+    }
+
+    // 2. Secondary Dispatch: Secure Email Routing to team recipients
     try {
       await fetch("https://formsubmit.co/ajax/Rahma@irtkaz.com", {
         method: "POST",
@@ -207,7 +227,7 @@ function initLeadForm() {
         })
       });
     } catch (apiError) {
-      console.warn("Direct API dispatch network fallback triggered:", apiError);
+      console.warn("Direct email dispatch network fallback triggered:", apiError);
     }
 
     // Reset button state

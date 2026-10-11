@@ -35,14 +35,15 @@ An ultra-luxurious, modern, mobile-responsive real estate landing page engineere
 
 ---
 
-## 📬 Backend Lead Routing
+## 📬 Backend Lead Routing & Webhooks
 
 Every lead submitted through the **Register Your Interest** form is routed to:
-1. `Rahma@irtkaz.com`
-2. `Mostafa.a.ashmawy@gmail.com`
-3. `Mostafa.ashmawy@irtkaz.com`
-
-Additionally, all submissions are backed up locally in `localStorage` under `ora_inquiries` for high reliability.
+1. **Zapier Webhook**: `https://hooks.zapier.com/hooks/catch/25429357/uclzmpn/` (with `fullName`, `phoneNumber`, `countryCode`, `landingPageUrl`, `submissionDate`, `portfolio`)
+2. **Multi-Recipient Email Dispatch**:
+   - `Rahma@irtkaz.com`
+   - `Mostafa.a.ashmawy@gmail.com`
+   - `Mostafa.ashmawy@irtkaz.com`
+3. **Local Storage Archive**: Backed up locally in `localStorage` under `ora_inquiries` for high reliability.
 
 ---
 
