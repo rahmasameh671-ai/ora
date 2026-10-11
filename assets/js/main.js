@@ -242,6 +242,17 @@ function initLeadForm() {
     if (flagDisplay) flagDisplay.textContent = '🇪🇬';
     if (codeDisplay) codeDisplay.textContent = '+20';
 
+    // Trigger Google Ads Conversion & Lead Event
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', {
+        event_category: 'form_submission',
+        event_label: 'ORA Developers Lead Form'
+      });
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17705943670'
+      });
+    }
+
     // Show Confirmation Modal
     if (modalBackdrop) {
       modalBackdrop.classList.add('show');
@@ -252,6 +263,21 @@ function initLeadForm() {
       const encodedMsg = encodeURIComponent(`Hello, I just registered my interest for the ORA Developers portfolio on properties-z.com. My name is ${fullName} (${fullPhoneNumber}). Please provide me with the available brochures and inventory.`);
       modalWhatsAppBtn.href = `https://wa.me/201033373331?text=${encodedMsg}`;
     }
+  });
+
+  // Track WhatsApp clicks with Google Tag
+  document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'contact', {
+          event_category: 'whatsapp_click',
+          event_label: 'WhatsApp Inquiry'
+        });
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-17705943670'
+        });
+      }
+    });
   });
 
   if (modalCloseBtn && modalBackdrop) {
