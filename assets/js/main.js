@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Google Ads Outbound Click / Call Tracking Conversion Handler
+ * Google Ads Outbound Click / WhatsApp & Lead Conversion Handler
  */
 function gtag_report_conversion(url) {
   var callback = function () {
@@ -21,7 +21,7 @@ function gtag_report_conversion(url) {
   };
   if (typeof gtag === 'function') {
     gtag('event', 'conversion', {
-        'send_to': 'AW-17705943670/XkReCJXR_LobEPaE7fpB',
+        'send_to': 'AW-17705943670/x9dFCPPh9bobEPaE7fpB',
         'event_callback': callback
     });
   } else if (typeof(url) != 'undefined') {
@@ -267,7 +267,7 @@ function initLeadForm() {
       gtag_report_conversion();
     } else if (typeof gtag === 'function') {
       gtag('event', 'conversion', {
-        'send_to': 'AW-17705943670/XkReCJXR_LobEPaE7fpB'
+        'send_to': 'AW-17705943670/x9dFCPPh9bobEPaE7fpB'
       });
     }
 
